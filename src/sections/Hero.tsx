@@ -37,7 +37,7 @@ const Hero = () => {
   const [paused, setPaused] = useState(false);
   const timerRef = useRef(null);
 
-  const changeSlide = (dir) => {
+  const changeSlide = (dir: number) => {
     setDirection(dir);
     setCurrent((prev) => (prev + dir + slides.length) % slides.length);
   };
