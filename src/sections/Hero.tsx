@@ -35,7 +35,7 @@ const Hero = () => {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0);
   const [paused, setPaused] = useState(false);
-  const timerRef = useRef(null);
+  const timerRef = useRef<null | number>(null);
 
   const changeSlide = (dir: number) => {
     setDirection(dir);
@@ -44,9 +44,12 @@ const Hero = () => {
 
   useEffect(() => {
     if (!paused) {
-      timerRef.current = setInterval(() => changeSlide(1), 5000);
+      timerRef.current = setInterval(
+        () => changeSlide(1),
+        5000
+      ) as unknown as number;
     }
-    return () => clearInterval(timerRef.current);
+    return () => clearInterval(timerRef.current as unknown as number);
   }, [paused]);
 
   return (
